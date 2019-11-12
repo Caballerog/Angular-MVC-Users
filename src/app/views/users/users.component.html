@@ -1,0 +1,34 @@
+<h1>Users</h1>
+
+<form [formGroup]="userForm" (ngSubmit)="add(userForm.value)">
+  <input
+    type="text"
+    placeholder="Name"
+    name="name"
+    formControlName="name"
+  /><input
+    type="text"
+    placeholder="Age"
+    name="age"
+    formControlName="age"
+  /><button>Submit</button>
+</form>
+<ul class="user-list">
+  <li *ngFor="let user of users">
+    <input type="checkbox" (change)="toggle(user)" [checked]="user.complete" />
+    <span>
+      <s *ngIf="user.complete; else uncompleteName">{{ user.name }}</s>
+      <ng-template #uncompleteName>{{ user.name }}</ng-template>
+    </span>
+    <span
+      #age
+      contenteditable="true"
+      class="editable"
+      (focusout)="edit(user, age)"
+    >
+      <s *ngIf="user.complete; else uncompleteAge">{{ user.age }}</s>
+      <ng-template #uncompleteAge>{{ user.age }}</ng-template></span
+    >
+    <button class="delete" (click)="delete(user)">Delete</button>
+  </li>
+</ul>
