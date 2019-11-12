@@ -1,20 +1,19 @@
-import { User, UserDto } from '../models/user.model';
+import { User, UserDto } from "../models/user.model";
 
 export class UserService {
   public users: User[];
 
   constructor() {
-    const users: UserDto[] = JSON.parse(localStorage.getItem('users')) || [];
+    const users: UserDto[] = JSON.parse(localStorage.getItem("users")) || [];
     this.users = users.map(user => new User(user));
   }
 
   _commit(users: User[]) {
-    localStorage.setItem('users', JSON.stringify(users));
+    localStorage.setItem("users", JSON.stringify(users));
   }
 
   add(user: User) {
     this.users.push(new User(user));
-    console.table(this.users);
     this._commit(this.users);
   }
 

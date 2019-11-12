@@ -1,9 +1,3 @@
-/**
- * @class Model
- *
- * Manages the data of the application.
- */
-
 export interface UserDto {
   name: string;
   age: string;
